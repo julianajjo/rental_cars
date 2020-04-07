@@ -1,7 +1,7 @@
 <h1> Fabricantes </h1>
 
-<% @manufacturers.each do |m| %>
-  <h3><%=link_to m.name, m %></h3>
+<% @manufacturers.each do |manufacturer| %>
+  <h3><%=link_to manufacturer.name, manufacturer %></h3>
 <% end %>
 
 <% if @manufacturers.empty? %>

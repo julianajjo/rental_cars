@@ -1,4 +1,5 @@
 <%= @manufacturer.name %>
 
 <%= link_to 'Editar', edit_manufacturer_path(@manufacturer.id) %>
+<%= link_to('Apagar fabricante', manufacturer_path(@manufacturer.id), method: :delete) %>
 <%= link_to 'Voltar', manufacturers_path%>

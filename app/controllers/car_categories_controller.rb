@@ -12,9 +12,13 @@ class CarCategoriesController < ApplicationController
     car_category_params = params.require(:car_category)
                                 .permit(:name, :daily_rate, :car_insurance, :third_part_insurance)
     @car_category = CarCategory.new(car_category_params)
-    @car_category.save
+    if @car_category.save
 
-    redirect_to @car_category
+     redirect_to @car_category
+
+    else
+      render 'new'
+    end
   end
 end
 

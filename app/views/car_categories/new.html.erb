@@ -1,5 +1,14 @@
 <h1>Nova Categoria de Carro</h1>
 
+<% if @car_category.errors.full_messages.any? %>
+  <p>Não foi possível salvar, verifique os erros abaixo:</p>
+  <ul>
+  <% @car_category.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @car_category) do |f| %>
   <div>
     <%= f.label :name %>

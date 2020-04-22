@@ -3,5 +3,5 @@ Rails.application.routes.draw do
     resources :manufacturers
     resources :car_categories, only: %i[new create show]
     resources :car_models, only: %i[index new create show]
-    resources :rentals, only: [:index]
+    resources :rentals, only: [:index, :new, :create]
 end

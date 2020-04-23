@@ -1,5 +1,9 @@
 <h1>Nova locação</h1>
 
+<% @rental.errors.full_messages.each do |message| %>
+<p><%= message %></p>
+<% end %>
+
 <%= form_with model: @rental, local: true do |f| %>
   <%= f.label :start_date, 'Data inicial' %>
   <%= f.date_field :start_date %>
@@ -11,3 +15,4 @@
   <%= f.collection_select :client_id, @clients, :id, :identification %>
   <%= f.submit 'Enviar' %>
 <% end %>
+

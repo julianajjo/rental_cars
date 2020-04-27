@@ -8,8 +8,11 @@ pt-BR:
         one: 'Fabricante'
         other: 'Fabricantes'
       rental:
-        one: Locação
-        other: Locações
+        one: 'Locação'
+        other: 'Locações'
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
     attributes:
       car_category:
         name: 'Nome'
@@ -25,3 +28,6 @@ pt-BR:
         client_id: 'Cliente'
         car_category: 'Categoria'
         car_category_id: 'Categoria'
+      user:
+        password: 'Senha'
+        

@@ -12,7 +12,7 @@ feature 'User log in' do
 
     expect(page).to have_content('Login efetuado com sucesso')
     expect(page).to have_link('Fabricante')
-    #expect(page).to have_link('Categorias de Carros')
+    expect(page).to have_link('Categorias de Carros')
     expect(page).to have_link('Modelos de Carros')
     expect(page).to have_link('Locações')
   end

@@ -1,4 +1,5 @@
 class RentalsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
 
   def index
     @rentals = Rental.all
@@ -13,6 +14,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id))
     if @rental.save
+      flash[:sucess] = 'Locação cadastrada com sucesso'
     redirect_to rentals_path
     else
       @car_categories = CarCategory.all
@@ -21,6 +23,9 @@ class RentalsController < ApplicationController
     end
   end
 
-
+  def search
+    @rentals = Rental.where(code: params[:q])
+    render :index
+  end
 
 end

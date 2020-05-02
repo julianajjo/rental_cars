@@ -3,7 +3,9 @@ require 'rails_helper'
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     manufacturer = Manufacturer.create(name: 'Fiat')
+    user = User.create!(email: 'test@test.com', password: '12345678')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -18,7 +20,9 @@ feature 'Admin edits manufacturer' do
 
   scenario 'successfully' do
     Manufacturer.create(name: 'Fiat')
+    user = User.create!(email: 'test@test.com', password: '12345678')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -32,7 +36,9 @@ feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
+    user = User.create!(email: 'test@test.com', password: '12345678')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -42,4 +48,5 @@ feature 'Admin edits manufacturer' do
 
     expect(page).to have_content('Nome já está em uso')
   end
+   
 end

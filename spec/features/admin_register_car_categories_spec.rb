@@ -5,6 +5,9 @@ feature 'Admin register car categories' do
     #Arrange
 
     #Act
+    user = User.create!(email: 'test@test.com', password: '12345678')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -24,6 +27,9 @@ feature 'Admin register car categories' do
     # Arrange
 
     # Act
+    user = User.create!(email: 'test@test.com', password: '12345678')
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -35,6 +41,7 @@ feature 'Admin register car categories' do
 
     expect(page).to have_content 'Não foi possível cadastrar a nova categoria'
   end
+
 end
 
 

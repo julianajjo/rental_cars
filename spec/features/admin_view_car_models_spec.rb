@@ -10,6 +10,9 @@ feature 'Admin view car models available' do
     CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: cat_a)
     CarModel.create!(name: 'Civic', manufacturer: honda, car_category: cat_d)
 
+    user = User.create!(email: 'test@test.com', password: '12345678')
+
+    login_as(user, scope: :user)
     #Act
     visit root_path
     click_on "Modelos de Carros"
@@ -23,4 +26,5 @@ feature 'Admin view car models available' do
     expect(page).to have_content('Civic')
     expect(page).to have_content('D')
   end
+
 end

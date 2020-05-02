@@ -5,7 +5,9 @@ feature 'Admin register car model' do
       # Arrange
       fiat = Manufacturer.create!(name: 'Fiat')
       cat_a = CarCategory.create!(name: 'A', daily_rate: 50, car_insurance: 20, third_part_insurance: 20)
-  
+      user = User.create!(email: 'test@test.com', password: '12345678')
+
+      login_as(user, scope: :user)  
       # Act
       visit root_path
       click_on 'Modelos de Carros'
@@ -27,4 +29,5 @@ feature 'Admin register car model' do
       expect(page).to have_content('Motor: 1.0')
       expect(page).to have_content('Ano: 2020')
     end
+
   end

@@ -7,6 +7,9 @@ pt-BR:
       manufacturer:
         one: 'Fabricante'
         other: 'Fabricantes'
+      subsidiary:
+        one: 'Filial'
+        other: 'Filiais'
       rental:
         one: 'Locação'
         other: 'Locações'
@@ -28,6 +31,10 @@ pt-BR:
         client_id: 'Cliente'
         car_category: 'Categoria'
         car_category_id: 'Categoria'
+      subsidiary:
+        name: 'Nome'
+        address: 'Endereço'
+        cnpj: 'cnpj'
       user:
         password: 'Senha'
         

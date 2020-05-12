@@ -1,0 +1,11 @@
+<h1>Confirmar Início de Locação</h1>
+<dl>
+  <dt>Código</dt>
+  <dd><%= @rental.code %>
+  <dt>Categoria</dt>
+  <dd><%= @rental.car_category.name %></dd>
+</dl>
+<h2>Carros Disponíveis</h2>
+<%= @available_cars.each do |car| %>
+  <%= car.description %>
+<% end %>

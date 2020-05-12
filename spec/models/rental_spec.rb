@@ -22,6 +22,9 @@ RSpec.describe Rental, type: :model do
       rental.save!
 
       expect(rental.scheduled?).to be true 
+
+      rental.scheduled!
+      rental.ongoing!
     end
   end
 end

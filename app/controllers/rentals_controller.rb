@@ -28,4 +28,9 @@ class RentalsController < ApplicationController
     render :index
   end
 
+  def start
+    @rental = Rental.find(params[:id])
+    car_models = @rental.car_category.car_models
+    @available_cars = Car.where(car_model: car_models)
+  end
 end

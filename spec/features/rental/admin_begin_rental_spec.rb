@@ -31,8 +31,8 @@ feature 'Admin begin rental' do
     fiat = Manufacturer.create!(name: 'Fiat')
     mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: car_category)
     argos = CarModel.create!(name: 'Argos', manufacturer: fiat, car_category: another_category)
-    car = Car.create(car_model: mobi, licence_plate: 'ABC-1234', mileage: 1000, color: 'Azul')
-    another_car = Car.create(car_model: argos, licence_plate: 'XYZ-9876', mileage: 0, color: 'Preto')
+    car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul')
+    another_car = Car.create(car_model: argos, license_plate: 'XYZ-9876', mileage: 0, color: 'Preto')
     
     customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
@@ -74,5 +74,5 @@ feature 'Admin begin rental' do
     expect(page).to have_content 'Status Iniciada'
     expect(page).to have_content 'Fulano Sicrano'
     expect(page).to have_content 'Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
-    end
+  end
 end

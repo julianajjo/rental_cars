@@ -33,4 +33,15 @@ class RentalsController < ApplicationController
     car_models = @rental.car_category.car_models
     @available_cars = Car.where(car_model: car_models)
   end
+
+  def confirm
+    @rental = Rental.find(params[:id])
+    @rental.update(status: :ongoing)
+    @car = Car.find(params[:car_id])
+    redirect_to @rental
+  end
+
+  def show
+    @rental = Rental.find(params[:id])
+  end
 end

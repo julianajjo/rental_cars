@@ -46,4 +46,7 @@ pt-BR:
         cnpj: 'cnpj'
       user:
         password: 'Senha'
+      car_rental:
+        car_id: 'Carro'
+        car: 'Carro'
         

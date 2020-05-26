@@ -1,4 +1,4 @@
-dl>
+<dl>
   <dt>Código</dt>
   <dd><%= @rental.code %>
   <dt>Categoria</dt>
@@ -21,9 +21,8 @@ dl>
     <dt>Valor da Diária:</dt>
     <dd><%= number_to_currency @rental.car_rental.daily_rate %>
   </dl>
-  
   <h2>Acessórios Contratados</h2>
-  <% @rental.car_rental.add_on_car_rentals.each do |acr| %>
-    <%= acr.add_on.name %>
+  <% @rental.car_rental.add_ons.each do |add_on| %>
+    <%= add_on.name%>
   <% end %>
 <% end %>

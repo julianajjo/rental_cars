@@ -57,5 +57,6 @@ feature 'Admin add addon to rental' do
     expect(page).to have_content 'Status Iniciada'
     expect(page).to have_content 'Carrinho de Bebê'
     expect(page).to have_content 'Transporte para Bike'
+    expect(page).not_to have_content 'Carregador para Celular'
   end
 end

@@ -14,7 +14,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date, :car_category_id, :customer_id))
     if @rental.save
-      RentalMailer.rental_scheduled(@rental.customer, @rental)
+      RentalMailer.rental_scheduled(@rental.id).deliver_now
       flash[:sucess] = 'Locação cadastrada com sucesso'
     redirect_to rentals_path
     else

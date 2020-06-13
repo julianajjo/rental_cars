@@ -6,6 +6,9 @@ feature 'Admin register rental' do
       customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
 
       user = User.create!(email: 'test@test.com', password: '12345678')
+      mail = double('RentalMailer')
+      allow(RentalMailer).to receive(:rental_scheduled).and_return(mail)
+      allow(mail).to receive(:deliver_now)
   
       visit root_path
       click_on 'Entrar'
@@ -18,8 +21,9 @@ feature 'Admin register rental' do
       fill_in 'Data final', with: '18/04/2030'
       select car_category.name, from: 'Categoria'
       select 'Fulano Sicrano - 578.100.235-94', from: 'Cliente'
-      click_on 'Enviar'
-  
+      click_on 'Enviar' 
+      
+      expect(RentalMailer).to have_received(:rental_scheduled)
       expect(page).to have_content('16/04/2030')
       expect(page).to have_content('18/04/2030')
       expect(page).to have_content(customer.identification)

@@ -36,7 +36,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   gem 'capybara', '~> 3.32'
   gem 'factory_bot_rails'
-end
+  gem 'faker', github: 'faker-ruby/faker', branch: 'master'
+ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

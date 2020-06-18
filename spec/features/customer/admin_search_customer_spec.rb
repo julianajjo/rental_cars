@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'Admin search customer' do
   scenario 'from partial name' do
     #Arrange
-    user = User.create!(email: 'test@teste.com', password: '12345678')
-    Customer.create!(name: 'Ana Silva', email: 'ana@email.com', cpf: '18885510205')
-    Customer.create!(name: 'André Silva', email: 'andre@email.com', cpf: '32336954540')
+    user = create(:user)
+    create(:customer, name: 'Ana Silva', email: 'ana@email.com')
+    create(:customer, name: 'André Silva', email: 'andre@email.com')
 
     #Act
     login_as(user, scope: :user)
@@ -25,10 +25,10 @@ feature 'Admin search customer' do
 
   scenario 'from partial name with multiple results' do
    #Arrange
-   user = User.create!(email: 'test@teste.com', password: '12345678')
-   Customer.create!(name: 'Ana Silva', email: 'ana@email.com', cpf: '18885510205')
-   Customer.create!(name: 'André Silva', email: 'andre@email.com', cpf: '32336954540')
-   Customer.create!(name: 'Carlos Oliveira', email: 'carlos@email.com', cpf: '71534235167')
+   user = create(:user)
+   create(:customer, name: 'Ana Silva', email: 'ana@email.com')
+   create(:customer, name: 'André Silva', email: 'andre@email.com')
+   create(:customer, name: 'Carlos Oliveira', email: 'carlos@email.com')
 
    #Act
    login_as(user, scope: :user)
@@ -55,9 +55,10 @@ feature 'Admin search customer' do
 
   scenario 'from cpf' do
     #Arrange
-    user = User.create!(email: 'test@teste.com', password: '12345678')
-    Customer.create!(name: 'Ana Silva', email: 'ana@email.com', cpf: '18885510205')
-    Customer.create!(name: 'André Silva', email: 'andre@email.com', cpf: '32336954540')
+    user = create(:user)
+    create(:customer, name: 'Ana Silva', email: 'ana@email.com', 
+           cpf: '18885510205')
+    create(:customer, name: 'André Silva', email: 'andre@email.com')
     
     #Act
     login_as(user, scope: :user)

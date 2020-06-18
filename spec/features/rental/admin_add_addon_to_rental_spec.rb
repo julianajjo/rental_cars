@@ -3,19 +3,21 @@ require 'rails_helper'
 feature 'Admin add addon to rental' do
   scenario 'view addons' do
      # Arrange
-     user = User.create!(email: 'test@test.com', password: '12345678')
-     car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 100)
+     user = create(:user)
+     car_category = create(:car_category)
  
-     fiat = Manufacturer.create!(name: 'Fiat')
-     mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: car_category)
-     car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul', status: :available)
+     fiat = create(:manufacturer)
+     mobi = create(:car_model)
+     car = create(:car, status: :available)
  
-     customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
+     customer = create(:customer)
 
-     addon = AddOn.create!(name: 'Carrinho de Bebê', daily_rate: '59', serial_number: 'BEBE1234')
-     other_addon = AddOn.create!(name: 'Transporte para Bike', daily_rate: '29', serial_number: 'BIKE999')
+     addon = AddOn.create!(name: 'Carrinho de Bebê', daily_rate: '59', 
+                           serial_number: 'BEBE1234')
+     other_addon = AddOn.create!(name: 'Transporte para Bike', daily_rate: '29', 
+                                 serial_number: 'BIKE999')
  
-     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
+     rental = create(:rental)
  
      # Act
      login_as(user, scope: :user)
@@ -29,20 +31,25 @@ feature 'Admin add addon to rental' do
 
   scenario 'and choose addons' do
     # Arrange
-    user = User.create!(email: 'test@test.com', password: '12345678')
-    car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 100)
+    user = create(:user)
+    car_category = create(:car_category, name: 'A')
 
-    fiat = Manufacturer.create!(name: 'Fiat')
-    mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: car_category)
-    car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul', status: :available)
+    fiat = create(:manufacturer, name: 'Fiat')
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat, 
+                  car_category: car_category)
+    car = create(:car, car_model: mobi, license_plate: 'ABC-1234', 
+                 mileage: 1000, color: 'Azul', status: :available)
 
-    customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
+    customer = create(:customer)
 
-    addon = AddOn.create!(name: 'Carrinho de Bebê', daily_rate: '59', serial_number: 'BEBE1234')
-    other_addon = AddOn.create!(name: 'Transporte para Bike', daily_rate: '29', serial_number: 'BIKE999')
-    unused_addon = AddOn.create!(name: 'Carregador para Celular', daily_rate: '9', serial_number: 'CHARG567')
+    addon = AddOn.create!(name: 'Carrinho de Bebê', daily_rate: '59', 
+                          serial_number: 'BEBE1234')
+    other_addon = AddOn.create!(name: 'Transporte para Bike', daily_rate: '29', 
+                                serial_number: 'BIKE999')
+    unused_addon = AddOn.create!(name: 'Carregador para Celular', 
+                                 daily_rate: '9', serial_number: 'CHARG567')
 
-    rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
+    rental = create(:rental, car_category: car_category)
 
     # Act
     login_as(user, scope: :user)

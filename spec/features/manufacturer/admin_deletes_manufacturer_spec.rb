@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Admin deletes manufacturer' do
   scenario 'successfully' do
-    Manufacturer.create!(name: 'Fiat')
+    create(:manufacturer, name: 'Fiat')
 
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path
@@ -17,10 +17,10 @@ feature 'Admin deletes manufacturer' do
   end
 
   scenario 'and keep anothers' do
-    Manufacturer.create!(name: 'Fiat')
-    Manufacturer.create!(name: 'Honda')
+    create(:manufacturer, name: 'Fiat')
+    create(:manufacturer, name: 'Honda')
 
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path

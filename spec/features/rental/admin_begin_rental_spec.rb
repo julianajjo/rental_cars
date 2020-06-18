@@ -3,10 +3,11 @@ require 'rails_helper'
 feature 'Admin begin rental' do
   scenario 'from customer search' do
     #Arrange
-    user = User.create!(email: 'test@test.com', password: '12345678')
-    car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 100)
-    customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
-    rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
+    user = create(:user)
+    car_category = create(:car_category, name: 'A')
+    customer = create(:customer, name: 'Fulano Sicrano', cpf: '57810023594')
+    rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', 
+                            customer: customer, car_category: car_category)
 
     #Act
     login_as(user)
@@ -20,19 +21,23 @@ feature 'Admin begin rental' do
     expect(current_path).to eq customer_path(customer.id)
     expect(page).to have_content rental.code
     expect(page).to have_content 'Categoria A'
-    expect(page).to have_link('Iniciar Locação', href: start_rental_path(rental.id))
+    expect(page).to have_link('Iniciar Locação',
+                               href: start_rental_path(rental.id))
   end
-
+ 
   scenario 'and view available cars' do
     #Arrange
     user = create(:user)
     car_category = create(:car_category, name: 'A')
     another_category = create(:car_category, name: 'B')
     fiat = create(:manufacturer, name: 'Fiat')
-    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat, car_category: car_category)
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat, 
+                  car_category: car_category)
     argos = create(:car_model, name: 'Argos', manufacturer: fiat)
-    car = create(:car, car_model: mobi, license_plate: 'ABC-1234', color: 'Azul')
-    another_car = create(:car, car_model: argos, license_plate: 'XYZ-9876', color: 'Preto')
+    car = create(:car, car_model: mobi, license_plate: 'ABC-1234', 
+                 color: 'Azul')
+    another_car = create(:car, car_model: argos, license_plate: 'XYZ-9876', 
+                         color: 'Preto')
     rental = create(:rental, car_category: car_category)
 
     #Act
@@ -50,16 +55,15 @@ feature 'Admin begin rental' do
 
   scenario 'successfully' do
     # Arrange
-    user = User.create!(email: 'test@test.com', password: '12345678')
-    car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 100)
-
-    fiat = Manufacturer.create!(name: 'Fiat')
-    mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: car_category)
-    car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul', status: :available)
-
-    customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
-
-    rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
+    user = create(:user, email: 'test@test.com')
+    car_category = create(:car_category)
+    fiat = create(:manufacturer, name: 'Fiat')
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat, 
+                  car_category: car_category)
+    car = create(:car, car_model: mobi, license_plate: 'ABC-1234', 
+                 color: 'Azul')
+    customer = create(:customer, name: 'Fulano Sicrano')
+    rental = create(:rental, car_category: car_category)
 
     # Act
     login_as(user, scope: :user)

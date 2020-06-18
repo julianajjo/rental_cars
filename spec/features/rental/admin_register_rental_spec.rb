@@ -2,10 +2,11 @@ require 'rails_helper'
 
 feature 'Admin register rental' do
     scenario 'successfully' do
-      car_category = CarCategory.create!(name: 'A', daily_rate: 100, third_part_insurance: 100, car_insurance: 100)
-      customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
+      car_category = create(:car_category, name: 'A')
+      customer = create(:customer, name: 'Fulano Sicrano', cpf: '57810023594', 
+                        email: 'teste@teste.com.br')
 
-      user = User.create!(email: 'test@test.com', password: '12345678')
+      user = create(:user)
       mail = double('RentalMailer')
       allow(RentalMailer).to receive(:rental_scheduled).and_return(mail)
       allow(mail).to receive(:deliver_now)
@@ -32,7 +33,7 @@ feature 'Admin register rental' do
     end
     
     scenario 'and must fill all fields' do
-      user = User.create!(email: 'test@test.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit root_path

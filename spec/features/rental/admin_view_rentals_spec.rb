@@ -2,10 +2,11 @@ require 'rails_helper'
 
 feature 'Admin view rentals' do
     scenario 'successfully' do
-      user = User.create!(email: 'test@test.com', password: '12345678')
-      car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_part_insurance: 100)
-      customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594', email: 'teste@teste.com.br')
-      Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', customer: customer, car_category: car_category)
+      user = create(:user)
+      car_category = create(:car_category, name: 'A')
+      customer = create(:customer, name: 'Fulano Sicrano', cpf: '57810023594')
+      create(:rental, start_date: '16/04/2030', end_date: '18/04/2030',
+             customer: customer, car_category: car_category)
   
       login_as(user, scope: :user)
       visit root_path

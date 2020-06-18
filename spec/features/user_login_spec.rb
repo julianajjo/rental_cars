@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User log in and log out' do
   scenario 'successfully' do
-    User.create!(email: 'test@test.com.br', password: '12345678')
+    create(:user, email: 'test@test.com.br', password: '12345678')
 
     visit root_path
     click_on 'Entrar'
@@ -20,7 +20,7 @@ feature 'User log in and log out' do
   end
 
   scenario 'successfully' do
-    User.create!(email: 'test@test.com.br', password: '12345678')
+    create(:user, email: 'test@test.com.br', password: '12345678')
 
     visit root_path
     click_on 'Entrar'

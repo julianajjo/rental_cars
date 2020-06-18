@@ -3,10 +3,9 @@ require 'rails_helper'
 feature 'Admin register car categories' do
   scenario 'sucessfully' do
     #Arrange
+    user = create(:user)
 
-    #Act
-    user = User.create!(email: 'test@test.com', password: '12345678')
-
+    #Act  
     login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carros'
@@ -27,7 +26,7 @@ feature 'Admin register car categories' do
     # Arrange
 
     # Act
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path

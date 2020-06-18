@@ -2,17 +2,18 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'from index page' do
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
 
-    expect(page).to have_link('Registrar novo fabricante', href: new_manufacturer_path)
+    expect(page).to have_link('Registrar novo fabricante', 
+                               href: new_manufacturer_path)
   end
 
   scenario 'successfully' do
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path
@@ -27,7 +28,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and name can not be blank' do
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     visit root_path
@@ -42,7 +43,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and name must be unique' do
-    user = User.create!(email: 'test@test.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)
     Manufacturer.create!(name: 'Fiat' )
